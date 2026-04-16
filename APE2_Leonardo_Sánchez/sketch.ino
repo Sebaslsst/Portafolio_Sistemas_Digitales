@@ -10,11 +10,9 @@ void setup() {
   for (int i = 0; i < numLeds; i++) {
     pinMode(LED_PINS[i], OUTPUT);
   }
-
   // Configurar botón como entrada
   pinMode(BOTON_PIN, INPUT);
 }
-
 void loop() {
   leerBoton();
 
@@ -36,7 +34,6 @@ void loop() {
       break;
   }
 }
-
 //  FUNCIONES
 void leerBoton() {
   bool estadoActual = digitalRead(BOTON_PIN);
@@ -46,16 +43,19 @@ void leerBoton() {
   }
   estadoAnterior = estadoActual;
 }
-
 // Primer Patrón Secuencia
 void patronSecuencia() {
-  for (int i = 0; i < numLeds; i++) {
+  int i = 0;
+  while (patronActual == 0) {
+    for (int j = 0; j < numLeds; j++) {
+      digitalWrite(LED_PINS[j], LOW);
+    }
     digitalWrite(LED_PINS[i], HIGH);
     delay(100);
-    digitalWrite(LED_PINS[i], LOW);
+    i = (i + 1) % numLeds;
+    leerBoton();
   }
 }
-
 // Segundo Patrón Persecución
 void patronPersecucion() {
   for (int i = 0; i < numLeds; i++) {
@@ -64,7 +64,6 @@ void patronPersecucion() {
     digitalWrite(LED_PINS[i], LOW);
   }
 }
-
 // Tercer Patrón Parpadeo
 void patronParpadeo() {
   for (int i = 0; i < numLeds; i++) {
@@ -77,7 +76,6 @@ void patronParpadeo() {
   }
   delay(200);
 }
-
 // Cuarto Patrón Aleatorio
 void patronAleatorio() {
   int led = random(0, numLeds);
@@ -85,7 +83,6 @@ void patronAleatorio() {
   delay(100);
   digitalWrite(LED_PINS[led], LOW);
 }
-
 // Quinto Patrón Onda
 void patronOnda() {
   for (int i = 0; i < numLeds; i++) {
