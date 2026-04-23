@@ -1,2 +1,2 @@
 # Portafolio Sistemas Digitales
-Repositorio el cuál contiene los códigos generados en Wokwi
+Repositorio el cuál contiene los códigos generados en Wokwi y en Tinkercad
